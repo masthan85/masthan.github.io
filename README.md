@@ -4,7 +4,11 @@ Next.js (App Router) personal site for data architecture, strategy, and AI consu
 
 ## Project layout
 
-Source lives under **`src/`** (`src/app`, `src/components`, `src/lib`) — the layout Next.js and Vercel expect by default. **Do not** set Vercel “Root Directory” to `src` unless you know you need it; leave it **empty** (repository root) so `package.json` and `next.config.ts` are found.
+- **`app/layout.tsx`** — minimal root layout (`<html>`, `<body>`) so the build always registers a valid root.
+- **`app/(site)/layout.tsx`** — fonts, header, footer, and JSON-LD shell; all marketing routes live under **`app/(site)/`**.
+- **`components/`**, **`lib/`** — shared code at repo root (`@/*` path alias).
+
+On Vercel, leave **Root Directory** empty (repository root).
 
 ## Features
 
@@ -74,7 +78,7 @@ npm run lint   # ESLint
 
 ## Deploy on Vercel
 
-1. Push this repository to GitHub (include **`src/app/layout.tsx`** — without it you will see `about/page.tsx doesn't have a root layout`).
+1. Push this repository to GitHub (include **`app/layout.tsx`** — without a root layout you will see errors such as `about/page.tsx doesn't have a root layout`).
 2. In Vercel: **Add New Project** → Import the repository.
 3. **Root Directory:** leave **empty** (repo root), not `app` or `src`.
 4. Framework preset: **Next.js** (auto-detected).
