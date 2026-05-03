@@ -2,6 +2,10 @@
 
 Next.js (App Router) personal site for data architecture, strategy, and AI consulting. Optimised for **Vercel** deployment.
 
+## Project layout
+
+Source lives under **`src/`** (`src/app`, `src/components`, `src/lib`) — the layout Next.js and Vercel expect by default. **Do not** set Vercel “Root Directory” to `src` unless you know you need it; leave it **empty** (repository root) so `package.json` and `next.config.ts` are found.
+
 ## Features
 
 - **Pages:** Home, About, Services, Experience, Case studies, Book, Contact, Privacy, Terms
@@ -70,11 +74,12 @@ npm run lint   # ESLint
 
 ## Deploy on Vercel
 
-1. Push this repository to GitHub.
+1. Push this repository to GitHub (include **`src/app/layout.tsx`** — without it you will see `about/page.tsx doesn't have a root layout`).
 2. In Vercel: **Add New Project** → Import the repository.
-3. Framework preset: **Next.js** (auto-detected).
-4. Add the environment variables above.
-5. Deploy.
+3. **Root Directory:** leave **empty** (repo root), not `app` or `src`.
+4. Framework preset: **Next.js** (auto-detected).
+5. Add the environment variables above. For `NEXT_PUBLIC_SITE_URL`, use a full URL with protocol, e.g. `https://www.yoursite.com` (bare domains are normalised, but invalid values can break the build).
+6. Deploy.
 
 No custom build command is required. Output is handled by Next.js.
 
